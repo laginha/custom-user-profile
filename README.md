@@ -10,7 +10,7 @@ Create custom-user profiles easily with this simple app.
 
 ## Quick start
 
-#### add to `INSTALLED_APPS` setting
+##### add to `INSTALLED_APPS` setting
 
 ```python
 INSTALLED_APPS = (
@@ -20,7 +20,7 @@ INSTALLED_APPS = (
 )
 ```
 
-#### set `AUTH_USER_MODEL` setting
+##### set `AUTH_USER_MODEL` setting
 
 ```python
 AUTH_USER_MODEL = 'custom_user_profiles.CustomUser'
@@ -28,7 +28,7 @@ AUTH_USER_MODEL = 'custom_user_profiles.CustomUser'
 
 > The `CustomUser` inherit from `AbstractEmailUser` model from [django-custom-user](https://github.com/jcugat/django-custom-user)
 
-If you want to create your own custom user, extend `custom_user_profiles.models.AbstractCustomUser`.
+If you want to create your own custom user
 
 ```python
 from custom_user_profiles.models import AbstractCustomUser
@@ -37,7 +37,8 @@ class CustomUser(AbstractCustomUser):
 	# ...
 ```
 
-#### create your profile models
+
+##### create your profile models
 
 ```python
 from custom_user_profiles.models import Profile
@@ -60,3 +61,15 @@ def view(request):
         ...
 ```
 
+Also `AbstractCustomUser` provides a **chainable** `QuerySet` manager:
+
+```python
+from django.contrib.auth import get_user_model
+User = get_user_model()
+
+User.queryset.seller() # get all users with 'seller' profile
+User.queryset.buyer() # get all users with 'buyer' profile
+User.queryset.something() # raises django.core.exceptions.FieldError
+```
+
+> `objects` manager is still available and inherit from django's `BaseUserManager`

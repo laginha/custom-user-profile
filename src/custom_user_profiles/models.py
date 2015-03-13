@@ -1,6 +1,7 @@
 from django.db import models
 from django.conf import settings
 from custom_user.models import AbstractEmailUser
+from .managers import CustomUserQuerySet
 import re
 
 PATTERN = re.compile(r'^is_(.+)$')
@@ -33,10 +34,12 @@ class CustomUserMixin(object):
         return bool(getattr(self, name, None))
 
 
-class AbstractCustomUser(AbstractEmailUser, CustomUserMixin):    
+class AbstractCustomUser(AbstractEmailUser, CustomUserMixin):
+    queryset = CustomUserQuerySet.manager()
+      
     class Meta:
         abstract = True
-        
+          
 class CustomUser(AbstractCustomUser):
     pass
     
