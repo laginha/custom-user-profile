@@ -72,4 +72,4 @@ User.queryset.buyer() # get all users with 'buyer' profile
 User.queryset.something() # raises django.core.exceptions.FieldError
 ```
 
-> `objects` manager is still available and inherit from django's `BaseUserManager`
+> `objects` manager is still available (e.g. `User.objects.create(...)`).

@@ -8,7 +8,7 @@ reqs = [str(each.req) for each in install_reqs if each.req]
 
 setup(
     name             = 'custom-user-profiles',
-    version          = '1.1.0',
+    version          = '1.1.1',
     author           = "Diogo Laginha",
     author_email     = "diogo.laginha.machado@gmail.com",
     url              = 'https://github.com/laginha/custom-user-profiles',

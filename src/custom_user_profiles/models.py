@@ -36,6 +36,7 @@ class CustomUserMixin(object):
 
 class AbstractCustomUser(AbstractEmailUser, CustomUserMixin):
     queryset = CustomUserQuerySet.manager()
+    objects = models.Manager() 
       
     class Meta:
         abstract = True
