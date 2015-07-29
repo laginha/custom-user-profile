@@ -14,9 +14,9 @@ class ProfileTestCase(TestCase):
         self.seller = Seller.objects.get_or_create(user=self.user)[0]
     
     def test_manager(self):
-        self.assertEqual( User.queryset.seller().filter(email__isnull=False).count(), 1 )
-        self.assertEqual( User.queryset.buyer().count(), 0 )
-        self.assertRaises( FieldError, User.queryset.something )
+        self.assertEqual( User.objects.seller().filter(email__isnull=False).count(), 1 )
+        self.assertEqual( User.objects.buyer().count(), 0 )
+        self.assertRaises( FieldError, User.objects.something )
         
     def test_get_profile(self):
         self.assertEqual( self.seller.user.seller, self.user.profile )
